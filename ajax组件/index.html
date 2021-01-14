@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ajax_index</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style type="text/css">
+		.bo img{
+			width: 100px;
+			height: 100px;
+		}
+		.bo li{
+			list-style:none;
+		}
+	</style>
+</head>
+<body>
+<div class="bo" style="text-de">
+ 
+</div>
+ 
+<script>
+    // $(function(){
+         $.ajax({
+             type: "GET",
+             url: "http://120.92.101.187/index.php/index/index/getImgList",
+             success: function(data){
+                console.log(data.data);
+                var group=data.data;
+                var str='';
+                for(var i=0;i<data.data.length-2;i++){
+                	str+='<li><img src="'+data.data[i]+'" /></li>' 
+                }
+                var htm='<ul>'+str+'</ul>';
+                $(".bo").html(htm);
+                
+            }
+         });
+    // });
+</script>
+</body>
+</html>

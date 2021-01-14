@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>分页</title>
+<link rel="stylesheet" href="css/limitFace.css" rel="external nofollow" >
+<style type="text/css">
+	*{
+		 padding: 0;
+		 margin: 0;
+		 font-size: 20px;
+		}
+		.all{
+		 width: 100%;
+		 height: 100vh;
+		 display: flex;
+		 justify-content: center;
+		 flex-wrap: wrap;
+		}
+		/*偷懒才用的id*/
+		#inputs input{
+		 width: 100px;
+		 height: 50px;
+		 background-color: white;
+		}
+		#table{
+		 width: 90%;
+		}
+		tr{
+		 width: 100%;
+		}
+		td{
+		 text-align: center;
+		 width: 50%;
+		 height: 10vh;
+		 border: 1px solid black;
+}
+</style>
+</head>
+<body>
+ <div class="all">
+	  <table id="table">
+	  
+	  </table>
+	  <div id="inputs">
+	  
+	  </div>
+ </div>
+
+	 <script type="text/javascript">
+	 	//一下数据为模拟集合，个人理解js中的集合就是将对象放进数组
+		var strs = [
+		 {
+		 "id":123,
+		 "pwd":456
+		 },
+		 {
+		 "id":456,
+		 "pwd":123
+		 },
+		 {
+		 "id":4681,
+		 "pwd":9815
+		 },
+		 {
+		 "id":471,
+		 "pwd":4981
+		 },
+		 {
+		 "id":1234789,
+		 "pwd":156
+		 },
+		 {
+		 "id":789,
+		 "pwd":158
+		 },
+		 {
+		 "id":"vgwh",
+		 "pwd":"vgsya"
+		 },
+		 {
+		 "id":1,
+		 "pwd":"tcv"
+		 },
+		 {
+		 "id":256,
+		 "pwd":"vtc0"
+		 }
+		];
+		// 假设规定每页显示长度为3
+		var len=3;
+		// 确认该集合会被分成几页，分成几页就代表需要几个页面按钮，封装方便多次使用
+		function limits() {
+			// 余数也算一页，这里用向上取整
+			var countLim=Math.ceil(strs.length/len);
+			// 确认页面按钮个数，进行循环显示到页面上
+			document.getElementById('inputs').innerHTML=''//清空一下
+			for(var i=1;i<=countLim;i++){
+				document.getElementById('inputs').innerHTML+='<input type="button" value="'+i+'" onclick="limitinput(this)" />';
+			}
+		}
+		var choose=0;//创建一个全局变量用来保存当前处于第几个页面
+		//点击按钮获取当前按钮的值进行选择当前table是第几页数据
+		function limitinput(ids){
+			choose = ids.value;
+			tablestr(choose);//刷新table数据
+			limits();//刷新页面按钮
+			// ids.style.backgroundColor='red';//当前点击的页面按钮背景颜色改变为红色
+			limitinputcolor(choose);//页面按钮变色
+		}
+		// 通过当前页面按钮和页面数据长度将数据放进table内，必须封装！
+		function tablestr(num) { //num是指当前哪个页面
+			var num1=(num-1)*len;//确定循环开始的集合下标
+			var num2=num*len; //确定循环结束的集合下标
+			document.getElementById("table").innerHTML='';//清空一下
+			for(var i=num1;i<num2;i++){ //遍历数组
+				var str='';
+				for(var h in strs[i]){ //遍历集合
+					str+='<td>'+strs[i][h]+'</td>';
+				}
+				document.getElementById("table").innerHTML+='<tr>'+str+'</tr>'; //每循环一次添加一条数据
+			}
+		}
+		function limitinputcolor(choose) {
+			document.getElementById("inputs").children[choose-1].style.backgroundColor="blue";
+		}
+		//初始化，当前页面显示为第一页
+		limits();//页面按钮生成
+		document.getElementById("inputs").children[0].style.backgroundColor="blue";//第一个按钮的背景颜色为红色
+		tablestr(1);//table数据显示
+
+	 </script>
+</body>
+</html>

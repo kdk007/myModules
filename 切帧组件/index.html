@@ -1,0 +1,84 @@
+<!-- 共2个展示位，首次进入随机展现一帧，再次进入切换另一帧，两帧一循环，曝光机会均等
+	 2个*2帧
+	 无投放时隐藏，仅投放一张时，其余用默认素材补齐
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>切帧</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="js/randomAd.js"></script>
+	<style type="text/css">
+		.a1ad img{
+			width: 300px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="a1ad">
+</div>
+
+<script type="text/javascript">
+	let storage_ad_obj = {
+		  a1_ad: '',
+		  a1_ad_status: false, 
+	};
+	$.ajax({
+						type: "GET",
+						url: "http://120.92.101.187/index.php/index/index/getImgList",
+						crossDomain: true,
+						dataType: 'json',
+						success: function(data){
+						console.log("success");
+							// 切帧
+							var a1_imgarr=[{group:[]},{group:[]}];	
+							if(data.data) {
+	                   				data.data.forEach(function (item, index) {
+	                        		if (index < 2) {	
+	                            		a1_imgarr[0].group.push(item);
+	                        		} else if(index>=2&&index<3) {
+	                            		a1_imgarr[1].group.push(item);
+	                        		}
+	                    			})
+	               			}
+							console.log(a1_imgarr);
+							var storage_img = JSON.parse(localStorage.getItem('storage_ad'));
+
+							// 过滤 取length大于0的
+							var a1_ad_arr = a1_imgarr.filter(item => item.group.length > 0);
+
+							console.log(storage_img);
+							console.log(a1_ad_arr );
+							var a1_ad_data = randomAd('storage_ad',a1_ad_arr, storage_ad_obj, storage_img, 'a1_ad_status', 'a1_ad');
+							
+			                if (a1_ad_data.length == 0) {
+			                    a1_ad_data = {
+			                        group: []
+			                    };
+			                }
+							console.log(a1_ad_data);
+							
+							var a1=a1_ad_data;
+							console.log(a1.group);
+							var a1_str='';
+							for(var i=0;i<a1.group.length;i++){
+								a1_str+='<img src="'+a1.group[i]+'" />'+'</a>';
+							}
+							console.log(a1_str);
+							// 无投放时隐藏，仅投放一张时，其余用默认素材补齐
+							if(a1.group.length==1){
+								a1_str+='<a><img src="http://xsxt.43.dev.eol.com.cn/app/html/www/material/fydd/gk/A1-590x60-02.jpg" /></a>';
+							}
+							$(".a1ad").html(a1_str);
+							
+
+							
+							
+						},
+         			});
+</script>
+</body>
+</html>

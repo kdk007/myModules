@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>web图片展示转移动端轮播</title>
+	<style type="text/css">
+		/* web*/
+		.mo_bbsScene{
+		  display: none;
+		}
+		.pageAll .bbsScene{
+		  width: 100%;
+		  margin: 0 auto;
+		  overflow: hidden;
+		  text-align: center;
+		}
+		.pageAll .bbsScene .bbsScene_three{
+		  text-align: center;
+		}
+		.pageAll .bbsScene .bbsScene_three img{
+		  height: 74px;
+		  text-align: center;
+		  margin: 0 auto;
+		}
+		.bbsScene .sceneBox1 ul li{
+		  margin-right: 10px;
+		  position: relative;
+		  margin-bottom: 20px;
+		  display: inline-block;
+		}
+		.bbsScene .sceneBox1 ul li:nth-child(3){
+		  margin-right: 0;
+		}
+		.bbsScene .sceneBox1 ul li:nth-child(6){
+		  margin-right: 0;
+		}
+		.bbsScene .sceneBox1 ul li img{
+		  cursor: pointer;
+		  width: 310px;
+		  height: 187px;
+		}
+		.bbsScene .sceneBox1 ul li p{
+		  text-align: center;
+		  position: absolute;
+		  bottom: 0;
+		  text-align: center;
+		  width: 100%;
+		  background-color:rgba(197,0,10,0.6);
+		  /* opacity: 0.6; */
+		  height: 28px;
+		  line-height: 28px;
+		  color: #ffffff;
+		  font-size: 14px;
+		}
+
+		/*移动端*/
+		@media(max-width: 1024px){
+			.pageAll .mo_bbsScene {
+			    padding-bottom: 6%;
+			    margin: 0 auto;
+			    display: block;
+			    max-width: 750px;
+			}
+			.bbsScene{
+				display: none;
+			}
+			.mo_bbsScene{
+				display: block;
+			}
+			.sceneBox2 {
+			    display: block;
+			    position: relative;
+			}
+			.index_bd {
+			    display: block;
+			    overflow: hidden;
+			    width: 90%;
+			    margin: 0 auto;
+			}
+			.mo_bbsScene .sceneBox2 ul li {
+			    float: left;
+			    margin-right: 0;
+			    position: relative;
+			    margin-bottom: 0px;
+			}
+			.mo_bbsScene .sceneBox2 ul li img {
+			    cursor: pointer;
+			    width: 100%;
+			}
+			.mo_bbsScene .sceneBox2 ul li p {
+			    text-align: center;
+			    position: absolute;
+			    bottom: 0;
+			    text-align: center;
+			    width: 100%;
+			    background-color: rgba(197,0,10,0.6);
+			    height: 28px;
+			    line-height: 28px;
+			    color: #ffffff;
+			    font-size: 14px;
+			}
+			.iconbtn {
+			    position: absolute;
+			    top: 0;
+			    right: 7px;
+			    left: 7px;
+			    bottom: 0;
+			    margin: auto;
+			    height: 25px;
+			}
+			.icon-btn {
+			    width: 25px;
+			    display: inline-block;
+			}
+			.icon-btn img {
+			    width: 100%;
+			    border-radius: 50%;
+			}
+			.next {
+			    float: right;
+			}
+
+		}
+		
+	</style>
+	<script type="text/javascript" src="TouchSlide.1.1.js"></script>
+</head>
+<body>
+	<!-- pc图片展示 -->
+	<div class="bbsScene">
+          <!-- <div class="bbsScene_three"><img src="images/bbsSceneimg.png" alt=""/></div> -->
+          <div class="sceneBox1" style="    text-align: center;
+			    margin-top: 30px;
+			    max-width: 1200px;
+			    margin: 0 auto;">
+            <ul>
+              <li>
+                <img src="https://www.eol.cn/gx/zt/2019hzlt/images/xc1.jpg" alt="">
+                <p>论坛举办地：武汉大学文理学部新图书馆</p>
+              </li>
+              <li>
+                <img src="https://www.eol.cn/gx/zt/2019hzlt/images/xc2.jpg" alt="">
+                <p>参会人士入场</p>
+              </li>
+              <li>
+                <img src="https://www.eol.cn/gx/zt/2019hzlt/images/xc3.jpg" alt="">
+                <p>众多参会人士认真听取嘉宾主题演讲</p>
+              </li>
+              
+            </ul>
+          </div>
+    </div>
+
+    <!-- mobile轮播图展示 -->
+	<div class="mo_bbsScene">
+        <!-- <div class="bbsScene_three"><img src="images/bbsSceneimg.png" alt=""/></div> -->
+        <div class="sceneBox2" id="owl-demo">
+          <div class="index_bd">
+            <ul style="width: 1785px; position: relative; padding: 0px; margin: 0px; transition-duration: 0ms; transform: translate(-357px, 0px) translateZ(0px);">
+              <li style="display: table-cell;vertical-align: top;width: 357px;">
+                <img src="https://www.eol.cn/gx/zt/2019hzlt/images/xc1.jpg" alt="">
+                <p>论坛举办地：武汉大学文理学部新图书馆</p>
+              </li>
+              <li style="display: table-cell;vertical-align: top;width: 357px;">
+                <img src="https://www.eol.cn/gx/zt/2019hzlt/images/xc2.jpg" alt="">
+                <p>参会人士入场</p>
+              </li>
+              <li style="display: table-cell;vertical-align: top;width: 357px;">
+                <img src="https://www.eol.cn/gx/zt/2019hzlt/images/xc3.jpg" alt="">
+                <p>众多参会人士认真听取嘉宾主题演讲</p>
+              </li>
+              
+            </ul>
+          </div>
+          <div class="iconbtn">
+            <div class="icon-btn prev" style="margin-left: 60px"><img src="img/pre.png" alt="上一张"></div>
+            <div class="icon-btn next" style="margin-right: 60px"><img src="img/next.png" alt="上一张"></div>
+          </div>
+        </div>
+      </div>
+
+<script type="text/javascript">
+      TouchSlide({
+        slideCell: "#owl-demo",
+        mainCell: ".index_bd ul",//切换元素的包裹层对象
+        effect: "leftLoop",//左循环滚动
+        autoPlay: false, //自动播放
+        autoPage: false, //自动分页
+        // defaultIndex: index,
+        // titCell:".hd ul",
+        switchLoad:"_src",
+      });
+</script>
+</body>
+</html>
