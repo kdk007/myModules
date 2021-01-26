@@ -1,54 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>分页</title>
-<link rel="stylesheet" href="css/limitFace.css" rel="external nofollow" >
-<style type="text/css">
-	*{
-		 padding: 0;
-		 margin: 0;
-		 font-size: 20px;
-		}
-		.all{
-		 width: 100%;
-		 height: 100vh;
-		 display: flex;
-		 justify-content: center;
-		 flex-wrap: wrap;
-		}
-		/*偷懒才用的id*/
-		#inputs input{
-		 width: 100px;
-		 height: 50px;
-		 background-color: white;
-		}
-		#table{
-		 width: 90%;
-		}
-		tr{
-		 width: 100%;
-		}
-		td{
-		 text-align: center;
-		 width: 50%;
-		 height: 10vh;
-		 border: 1px solid black;
-}
-</style>
-</head>
-<body>
- <div class="all">
-	  <table id="table">
-	  
-	  </table>
-	  <div id="inputs">
-	  
-	  </div>
- </div>
-
-	 <script type="text/javascript">
-	 	//一下数据为模拟集合，个人理解js中的集合就是将对象放进数组
+//一下数据为模拟集合，个人理解js中的集合就是将对象放进数组
 		var strs = [
 		 {
 		 "id":123,
@@ -128,7 +78,3 @@
 		limits();//页面按钮生成
 		document.getElementById("inputs").children[0].style.backgroundColor="blue";//第一个按钮的背景颜色为红色
 		tablestr(1);//table数据显示
-
-	 </script>
-</body>
-</html>
