@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>点击弹出登录框</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+<script type="text/javascript" src="index.js"></script>
+</head>
+
+<body>
+<button type="button">登录</button>
+<div class="popOutBg"></div>
+<div class="popOut">
+    <span title="关闭">x</span>
+    <table>
+        <caption>欢迎登录本网站</caption>
+        <tr>
+            <td width="120">用户名：</td>
+            <td><input type="text" class="inp" placeholder="请输入用户名"></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input type="password" class="inp" placeholder="请输入密码"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" class="login" value="登录"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
