@@ -1,0 +1,105 @@
+<!-- 前端CRUD -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 300px;
+            margin: 0 auto;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            height: 50px;
+            border: 1px solid #b0b0b0;
+            margin-top: 10px;
+            line-height: 50px;
+            padding-left: 10px;
+        }
+        ul li span{
+            float: right;
+            height: 30px;
+            margin-top: 10px;
+            color: #fff;
+            line-height: 30px;
+            font-size: 12px;
+            padding: 0 10px;
+        }
+        ul li span.update{
+            background-color: purple;
+            margin:10px 20px;
+        }
+        ul li span.delete{
+            background-color: red;
+        }
+        .addBtn{
+            height: 50px;
+            background-color: green;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li>苹果 <span class="update">修改</span><span class="delete">删除</span></li>
+        <li>榴莲 <span class="update">修改</span><span class="delete">删除</span></li>
+        <li>橘子 <span class="update">修改</span><span class="delete">删除</span></li>
+        <li>香蕉 <span class="update">修改</span><span class="delete">删除</span></li>
+        <li>西瓜 <span class="update">修改</span><span class="delete">删除</span></li>
+    </ul>
+    <div class="addBtn" id="addBtn">添加一项</div>
+</div>
+<script>
+    var addBtn = document.getElementById('addBtn');
+    var oUl = document.getElementsByTagName('ul')[0];
+    var upds = document.getElementsByClassName('update');
+    var dels = document.getElementsByClassName('delete');
+    addBtn.onclick = function () {
+        var res = prompt('请输入要添加的内容');//'aa' '' null
+        if(res){
+            var oLi = document.createElement('li');
+            console.log(res);
+            oLi.innerHTML = res+'<span class="update">修改</span><span class="delete">删除</span>';
+            oUl.appendChild(oLi);
+        }
+    };
+    oUl.onclick = function (event) {//event事件对象
+        event = event || window.event;//处理ie下兼容性
+        var tar = event.target||event.srcElement; //事件源
+        console.log(tar.innerHTML);
+        if(tar.innerHTML === '修改'){
+            var res = prompt('请输入修改的内容');
+            console.log(res);
+            if(res){
+                var oLi = document.createElement('li');
+                oLi.innerHTML = res+'<span class="update">修改</span><span class="delete">删除</span>';
+                oUl.replaceChild(oLi,tar.parentNode);
+            }
+        }
+        if(tar.innerHTML === '删除'){
+            if(confirm('确定要删除该项吗？')){
+                oUl.removeChild(tar.parentNode);
+            }
+        }
+    }
+
+
+    // oUl.onclick=function(event){ //event事件对象
+    //     event=event||window.event; //处理ie下兼容性
+    //     var tar=event.target||event.srcElement; //事件源
+
+    // }
+</script>
+</body>
+</html>
